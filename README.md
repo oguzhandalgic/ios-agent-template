@@ -5,7 +5,7 @@
 ![Claude 4.5 Opus](https://img.shields.io/badge/Claude-4.5%20Opus-9F70D1?logo=anthropic)
 ![CrewAI](https://img.shields.io/badge/CrewAI-0.67%2B-FF6B6B?logo=python&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
 Template repository for building complex iOS / Swift applications using a **multi-agent AI workflow** 
 powered by **Claude 4.5 Opus**, **CrewAI**, and free-tier MCP integrations.
@@ -33,66 +33,57 @@ PR auto-documentation, and automated merging.
 
 ## 📋 Project Structure
 
-```
+```text
 project_root/
-├── docs/                  # All project documentation — agents read this automatically
-├── agents/                # Agent implementations (all extend BaseAgent)
+├── docs/                    # All project documentation — agents read automatically
+├── agents/                  # Agent implementations (all extend BaseAgent)
 │   ├── base_agent.py
 │   ├── architect_agent.py
 │   ├── coder_agent.py
 │   ├── tester_agent.py
 │   ├── integrator_agent.py
-│   └── git_agent.py       # Enforces branch/PR/merge workflow
-├── tasks/                 # CrewAI task definitions (optional separation)
-├── src/                   # Generated Swift source code
-├── tests/                 # XCTest files
-├── landing/               # SaaS landing page (HTML/JS/CSS - deployable to Vercel/Netlify)
-├── status.json            # Shared project status (phase, git status, readiness)
-├── status.lock            # Prevents concurrent status modifications
-├── crew.py                # Main orchestrator — runs the whole workflow
-├── requirements.txt       # Python dependencies
-├── swiftlint.yml          # SwiftLint configuration for code quality
+│   └── git_agent.py         # Enforces branch/PR/merge workflow
+├── tasks/                   # CrewAI task definitions (optional separation)
+├── src/                     # Generated Swift source code
+├── tests/                   # XCTest files
+├── landing/                 # SaaS landing page (HTML/JS/CSS - deployable to Vercel/Netlify)
+├── status.json              # Shared project status (phase, git status, readiness)
+├── status.lock              # Prevents concurrent status modifications
+├── crew.py                  # Main orchestrator — runs the whole workflow
+├── requirements.txt         # Python dependencies
+├── swiftlint.yml            # SwiftLint configuration for code quality
 ├── .gitignore
-└── README.md              # ← You are here
+└── README.md                # ← You are here
 ```
 
 ## 🚀 Quick Start — Create a New Project
 
-Create new project from template
+1. Create new project from template
 On GitHub: **Use this template** → Name your new repo  or via CLI:
 ```bash
 git clone https://github.com/YOUR_USERNAME/ios-agent-template.git my-awesome-ios-app
 cd my-awesome-ios-app
 ```
-
-Install Python dependencies
+2. Install Python dependencies
 ```bash
 python -m venv .venv
 source .venv/bin/activate    # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
-
-Set environment variables (.env or export)
+3. Set environment variables (.env or export)
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
 export GITHUB_TOKEN=ghp_...           # Personal Access Token (repo scope)
 # Optional: SERPER_API_KEY, OPENAI_API_KEY, etc. for additional tools/MCPs
 ```
-
-Prepare your project
-```bash
-# If using LangChain local vector store
-python -m langchain.index docs/
-```
+4. Prepare your project
 - Put requirements, specs, wireframes, architecture notes → `docs/`
 - (Recommended) Index docs for better RAG:
-
-Initialize status
+5. Initialize status
 ```bash
 echo '{"initialized": true, "phase": "planning", "git_status": "idle", "agents_ready": true}' > status.json
 ```
-
-Run the agents!
+6. Run the agents!
 ```bash
 python crew.py
 ```
@@ -100,22 +91,22 @@ python crew.py
 
 ## 🔄 Workflow Diagram (Conceptual)
 
-```
-docs/ → Agents read & summarize automatically
+```text
+docs/                           → Agents read & summarize automatically
    ↓
-status.json (locked) → Controls agent readiness & current phase
+status.json (locked)            → Controls agent readiness & current phase
    ↓
-CrewAI orchestrator → Delegates tasks autonomously
+CrewAI orchestrator             → Delegates tasks autonomously
    ↓
-Specialized Agents (Architect → Coder → Tester → Integrator)
+Specialized Agents              → Architect → Coder → Tester → Integrator
    ↓
-GitAgent → Creates feature branch → Commits → Pushes → Creates documented PR
+GitAgent                        → Creates feature branch → Commits → Pushes → PR
    ↓
-GitAgent (analysis) → Runs swiftlint + tests + Claude review
+Analysis                        → swiftlint + tests + Claude review
    ↓
-Merge to main (if all checks pass) or loop back for fixes
+Merge to main                   (if all checks pass) or loop back for fixes
    ↓
-Optional: Deploy SaaS landing → Vercel / Netlify / Firebase
+Deploy SaaS landing             → Vercel / Netlify / Firebase (optional)
 ```
 
 ## ⚙️ Configuration & Customization
@@ -167,7 +158,7 @@ MIT © [Your Name / Your Organization] 2025
 
 ## 🤝 Contributing
 
-This is a personal template — feel free to fork & adapt!  
+This is a personal template — feel free to fork & adapt!
 If you find a great improvement (new agent, better MCP integration, Claude prompt engineering, etc.), PRs are very welcome.
 
 Happy agentic iOS & SaaS development! 🚀
