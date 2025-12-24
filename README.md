@@ -35,24 +35,24 @@ PR auto-documentation, and automated merging.
 
 ```text
 project_root/
-├── docs/                    # All project documentation — agents read automatically
-├── agents/                  # Agent implementations (all extend BaseAgent)
-│   ├── base_agent.py
-│   ├── architect_agent.py
-│   ├── coder_agent.py
-│   ├── tester_agent.py
-│   ├── integrator_agent.py
-│   └── git_agent.py         # Enforces branch/PR/merge workflow
-├── tasks/                   # CrewAI task definitions (optional separation)
-├── src/                     # Generated Swift source code
-├── tests/                   # XCTest files
-├── landing/                 # SaaS landing page (HTML/JS/CSS - deployable to Vercel/Netlify)
-├── status.json              # Shared project status (phase, git status, readiness)
-├── status.lock              # Prevents concurrent status modifications
-├── crew.py                  # Main orchestrator — runs the whole workflow
-├── requirements.txt         # Python dependencies
-├── swiftlint.yml            # SwiftLint configuration for code quality
-├── .gitignore
+├── docs/                    # All project documentation — agents read & summarize automatically on startup
+├── agents/                  # All specialized AI agents (inherit from BaseAgent)
+│   ├── base_agent.py        # Common base class (docs reading, status check, MCP integration)
+│   ├── architect_agent.py   # High-level architecture & task decomposition
+│   ├── coder_agent.py       # Generates Swift/SwiftUI code
+│   ├── tester_agent.py      # Creates & runs unit/UI tests (XCTest)
+│   ├── integrator_agent.py  # Merges modules, resolves conflicts, prepares for deployment
+│   └── git_agent.py         # Enforces strict Git workflow (branches, commits, PRs, analysis & merge)
+├── tasks/                   # CrewAI task definitions (optional modular separation)
+├── src/                     # Generated iOS/Swift source code & project files
+├── tests/                   # Generated XCTest files & test targets
+├── landing/                 # SaaS landing page (HTML/JS/CSS — deployable to Vercel/Netlify)
+├── status.json              # Shared project status file (phase, git status, agent readiness)
+├── status.lock              # File lock to prevent concurrent status modifications
+├── crew.py                  # Main CrewAI orchestrator — runs the full agent workflow
+├── requirements.txt         # Python dependencies for the agent system
+├── swiftlint.yml            # SwiftLint rules used during PR quality checks
+├── .gitignore               # Standard ignores for Xcode, Python, build artifacts, etc.
 └── README.md                # ← You are here
 ```
 
